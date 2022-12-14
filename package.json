@@ -9,6 +9,9 @@
     "dev": "nodemon start.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "18.4"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/gamer-1478/ncrypt-promo-website.git"

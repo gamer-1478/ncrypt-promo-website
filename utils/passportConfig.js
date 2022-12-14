@@ -1,7 +1,8 @@
 const passportLocal = require('passport-local'),
     LocalStrategy = (passportLocal.Strategy),
     bcrypt = require('bcrypt'),
-    User = require('./../schemas/userSchema.js');
+    path = require('path'),
+    User = require(path.join(__dirname, '../','/schemas/userSchema.js'));
 
 module.exports = function passportInit(passport) {
     passport.use(
