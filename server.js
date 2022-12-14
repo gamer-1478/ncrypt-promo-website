@@ -4,7 +4,7 @@ require('dotenv').config()
 const express = require('express'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
-    ejs = require('ejs'),
+    path = require('path'),
     session = require('cookie-session'),
     passport = require('passport'),
     passportInit = require('./utils/passportConfig.js'),
@@ -13,11 +13,10 @@ const express = require('express'),
     mongoose = require('mongoose');
 
 //routes
-const landing = require('./routes/landing.js'),
-    auth = require('./routes/auth.js');
+const auth = require('./routes/auth.js');
 
 const app = express(),
-    PORT = process.env.PORT || 3000;
+    PORT = process.env.PORT || 3001;
 
 //app middleware
 app.set('view engine', 'ejs')
@@ -44,13 +43,13 @@ mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).the
 app.use(passport.initialize())
 app.use(passport.session())
 
-//main
-app.use('/', landing)
-app.use('/auth', auth)
+app.use(express.static(path.join(__dirname, 'frontend/build')));
 
-app.get('/404', (req, res) => {
-    res.render('404', { user: req.user })
-});
+//main
+app.use('/auth', auth)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/build/index.html'));
+})
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`)

@@ -6,9 +6,6 @@ const express = require('express'),
 router.use(require('express-flash')());
 
 //----------------------------------------REGISTER----------------------------------------//
-router.get('/register', forwardAuthenticated, (req, res) => {
-    res.render('auth/login', { title: "Login" })
-});
 router.post('/register', async (req, res) => {
     let errors = [];
     const { email, password } = req.body;
@@ -48,9 +45,6 @@ router.post('/register', async (req, res) => {
 })
 
 //----------------------------------------LOGIN----------------------------------------//
-router.get('/login', forwardAuthenticated, (req, res) => {
-    res.render('auth/login', { title: "Login" })
-});
 router.post('/login', (req, res, next) => {
     User.findOne({ email: req.body.email }).then(user => {
         passport.authenticate('local', (err, user, info) => {
