@@ -66,7 +66,7 @@ router.get('/user', (req, res) => {
 //----------------------------------------LOGOUT----------------------------------------//
 router.get('/logout', ensureAuthenticated, (req, res) => {
     req.logout()
-    res.redirect('/auth/login')
+    res.redirect('/login')
 })
 
 module.exports = router;

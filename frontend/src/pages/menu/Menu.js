@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Menu.css';
 import { useNavigate } from 'react-router-dom';
+import getUrl from '../../utitilies/Validation';
 
 function Menu() {
   const navigate = useNavigate();
@@ -24,7 +25,26 @@ function Menu() {
 
   function redirecttopage(id) {
     navigate(id);
-  }
+  } 
+  
+  const [user, SetUser] = useState();
+
+  useEffect(() => {
+    fetch(getUrl()+'/auth/user', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      credentials: 'include'
+    }).then(res => res.json()).then(data => {
+      if (data.error) {
+      } else {
+        SetUser(data);
+      }
+    })
+  }, [])
+
 
   return (
     <div className='menu-container'>
@@ -35,14 +55,16 @@ function Menu() {
         <div id='welc' onMouseOver={() => hovering('welc')} className='menu-col'>
           <p onClick={() => redirecttopage('/')}><span className='menu-span' id='welc-num'>01</span>Welcome</p>
         </div>
-        <div id='model' onMouseOver={() => hovering('model')} className='menu-col'>
-          <p onClick={() => redirecttopage('/models')}><span className='menu-span' id='model-num'>02</span>Model</p>
-        </div>
         <div id='workshop' onMouseOver={() => hovering('workshop')} className='menu-col'>
-          <p onClick={() => redirecttopage('/workshop')}><span className='menu-span' id='workshop-num'>03</span>The Workshop</p>
+          <p onClick={() => redirecttopage('/workshop')}><span className='menu-span' id='workshop-num'>02</span>The Workshop</p>
         </div>
         <div id='test' onMouseOver={() => hovering('test')} className='menu-col'>
-          <p onClick={() => redirecttopage('/testdrive')}><span className='menu-span' id='test-num'>04</span>Test Drive</p>
+          <p onClick={() => redirecttopage('/testdrive')}><span className='menu-span' id='test-num'>03</span>Test Drive</p>
+        </div>
+        <div id='model' onMouseOver={() => hovering('model')} className='menu-col'>
+          {user? 
+          <p onClick={() => redirecttopage('/profile')}><span className='menu-span' id='model-num'>04</span>Profile</p> : 
+          <p onClick={() => redirecttopage('/login')}><span className='menu-span' id='model-num'>04</span>Login</p>}
         </div>
       </div>
       <div className='menu-right'>

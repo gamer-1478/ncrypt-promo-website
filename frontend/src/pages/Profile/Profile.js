@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Profile.css'
 import { useNavigate } from 'react-router-dom';
+import getUrl from '../../utitilies/Validation';
 
 function Profile() {
     const navigate = useNavigate();
@@ -8,7 +9,7 @@ function Profile() {
     const [user, SetUser] = useState({});
 
     useEffect(() => {
-        fetch('/auth/user', {
+        fetch(getUrl() + '/auth/user', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

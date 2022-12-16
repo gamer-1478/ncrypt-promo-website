@@ -27,7 +27,7 @@ function Landing() {
       <div className='landing-page3'>
         <img className='heading-page3' src='images/page3head.png' alt='page3head' />
         <img className='page3-model' src='images/page3model.png' alt='page3' />
-        <a href='models'><img className='explore' src='images/explore.png' alt='explore' /></a>
+        <a href='workshop'><img className='explore' src='images/explore.png' alt='explore' /></a>
       </div>
       <Footer />
     </div>

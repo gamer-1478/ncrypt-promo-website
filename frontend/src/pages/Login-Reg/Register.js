@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import './Register.css'
 import { Notyf } from 'notyf';
+import getUrl from '../../utitilies/Validation';
 
 function Register() {
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ function Register() {
             return
         }
 
-        const res = await fetch('/auth/register', {
+        const res = await fetch(getUrl() + '/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -7,6 +7,10 @@
     background-size: cover;
     height: 100vh;
     width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -32,6 +36,8 @@
 
 /* -------------------------------------Page 2 ------------------------------------------------- */
 .landing-page2 {
+    margin-top: 100vh !important;
+    z-index: 1;
     height: 100vh;
     width: 100%;
     background-color: #000;

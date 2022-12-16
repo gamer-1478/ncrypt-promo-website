@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import './Register.css'
 import { Notyf } from 'notyf';
+import getUrl from '../../utitilies/Validation';
 
 function Login() {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ function Login() {
   async function login() {
     const email = document.getElementById('email').value
     const pass = document.getElementById('pass').value
-    const res = await fetch('/auth/login', {
+    const res = await fetch(getUrl() + '/auth/login', {
       method: 'POST',
       withCredentials: true,
       credentials: 'include',
