@@ -1,6 +1,8 @@
 const express = require('express'),
     router = express.Router(),
-    validation = require('../middlewares/validation.js'),
+    User = require('../schemas/userSchema.js'),
+    bcrypt = require('bcrypt'),
+    passport = require('passport'),
     { ensureAuthenticated, forwardAuthenticated } = require('../middlewares/authenticate.js');
 
 router.use(require('express-flash')());
@@ -8,9 +10,9 @@ router.use(require('express-flash')());
 //----------------------------------------REGISTER----------------------------------------//
 router.post('/register', async (req, res) => {
     let errors = [];
-    const { email, password } = req.body;
+    const { email, password, name } = req.body;
 
-    if (!email || !password) {
+    if (!email || !password || !name) {
         errors.push({ msg: "All fields are required" })
     };
     var existsUser = await User.findOne({ email: email });
@@ -21,6 +23,7 @@ router.post('/register', async (req, res) => {
         return res.send(errors);
     }
     const newUser = new User({
+        name: name,
         email: email,
         password: password,
     });
@@ -40,24 +43,19 @@ router.post('/register', async (req, res) => {
             })
         })
     );
-
-
 })
 
 //----------------------------------------LOGIN----------------------------------------//
-router.post('/login', (req, res, next) => {
-    User.findOne({ email: req.body.email }).then(user => {
-        passport.authenticate('local', (err, user, info) => {
+router.post('/login', (req, res) => {
+    console.log(req.body)
+    passport.authenticate('local', (err, user, info) => {
+        if (err) throw err;
+        if (!user) return res.send([{ msg: info.message }]);
+        req.login(user, (err) => {
             if (err) throw err;
-            if (!user) res.send([{ msg: info.message }]);
-            else {
-                req.logIn(user, (err) => {
-                    if (err) throw err;
-                    res.send([{ msg: "Successfully Authenticated", sucess: true }]);
-                });
-            }
-        })(req, res, next);
-    })
+            return res.send([{ msg: "Successfully Authenticated", success: true }]);
+        });
+    })(req, res);
 });
 
 //----------------------------------------LOGOUT----------------------------------------//

@@ -1,12 +1,12 @@
-const passportLocal = require('passport-local'),
-    LocalStrategy = (passportLocal.Strategy),
-    bcrypt = require('bcrypt'),
-    path = require('path'),
-    User = require(path.join(__dirname, '../','/schemas/userSchema.js'));
+const LocalStrategy = require('passport-local').Strategy
+const bcrypt = require('bcrypt')
+const User = require('./../schemas/userSchema.js');
 
-module.exports = function passportInit(passport) {
+module.exports = function passport_init(passport) {
     passport.use(
-        new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+        new LocalStrategy({
+            usernameField: 'email', 
+            passwordField: 'password' }, (email, password, done) => {
             User.findOne({
                 email: email
             }).then(user => {
@@ -27,10 +27,12 @@ module.exports = function passportInit(passport) {
     );
 
     passport.serializeUser(function (user, done) {
+        console.log(user.id)
         done(null, user.id);
     });
 
     passport.deserializeUser(function (id, done) {
+        console.log(id, 'deseralise')
         User.findById(id, function (err, user) {
             done(err, user);
         });

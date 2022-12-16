@@ -30,7 +30,7 @@ function Menu() {
     <div className='menu-container'>
       <div className='menu-left'>
         <div className='menu-col' onClick={() => closeMenu()}>
-          <i style={{ color: 'white' }} className='fa fa-3x fa-times' aria-hidden="true"></i>
+          <i style={{ color: 'white', cursor:'pointer' }} className='fa fa-3x fa-times' aria-hidden="true"></i>
         </div>
         <div id='welc' onMouseOver={() => hovering('welc')} className='menu-col'>
           <p onClick={() => redirecttopage('/')}><span className='menu-span' id='welc-num'>01</span>Welcome</p>

@@ -8,6 +8,7 @@ const mongoose = require('mongoose'),
 const userSchema = new mongoose.Schema({
     email: reqString,
     password: reqString,
+    name: reqString,
     date: {
         type: String,
         default: dateStringWithTime

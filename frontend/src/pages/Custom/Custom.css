@@ -1,0 +1,103 @@
+.workshop-master-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100%;
+    background-image: url('./bgcustom.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* ----------------- WORKSHOP NAVIGATION ----------------- */
+.work-nav {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.work-nav-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 10vw;
+}
+
+.work-nav-logo {
+    width: 7vw;
+}
+
+.work-nav-bars {
+    cursor: pointer;
+}
+
+.work-nav-indicator {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #fff;
+}
+
+/* ----------------- WORKSHOP CONTENT ----------------- */
+
+.workshop-container {
+    padding-bottom: 80px;
+}
+
+.horizontal-scroll {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    white-space: nowrap
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.workshop-card-title {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 5vh;
+    width: 30vw;
+    text-align: left;
+    white-space: initial;
+    height: auto;
+}
+
+.workshop-card-desc {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 5vh;
+    width: 30vw;
+    text-align: left;
+    white-space: initial;
+    height: auto;
+}
+
+.workshop-card {
+    margin-left: 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 40vw;
+    height: 60vh;
+    background-color: transparent;
+
+}
+
