@@ -58,6 +58,11 @@ router.post('/login', (req, res) => {
     })(req, res);
 });
 
+router.get('/user', (req, res) => {
+    if (req.isAuthenticated()) return res.send(req.user);
+    else return res.send({ msg: "Not Authenticated", error: true});
+})
+
 //----------------------------------------LOGOUT----------------------------------------//
 router.get('/logout', ensureAuthenticated, (req, res) => {
     req.logout()

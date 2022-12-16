@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     background-image: url('./bgcustom.png');
     background-size: cover;

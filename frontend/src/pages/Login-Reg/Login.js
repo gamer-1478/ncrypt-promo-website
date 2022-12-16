@@ -10,7 +10,7 @@ function Login() {
   async function login() {
     const email = document.getElementById('email').value
     const pass = document.getElementById('pass').value
-    const res = await fetch('http://localhost:3001/auth/login', {
+    const res = await fetch('/auth/login', {
       method: 'POST',
       withCredentials: true,
       credentials: 'include',
