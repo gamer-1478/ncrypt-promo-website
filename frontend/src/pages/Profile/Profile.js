@@ -41,10 +41,10 @@ function Profile() {
             <div className='profile-container'>
                 <h1 className='profile-container-title'>Your Upcoming Test Drives</h1>
                 {user.hasOwnProperty('drives') && user.drives.length == 0 && <p className='profile-container-desc'>You have no upcoming test drives</p>}
-                {user.hasOwnProperty('drives') &&user.drives.length != 0 && user.drives.map((drive) => {
+                {user.hasOwnProperty('drives') &&user.drives.length != 0 && user.drives.map((drive, index) => {
                     return (
                         <div className='workshop-card'>
-                            <h1 className='workshop-card-title'>{normliseCarName(drive.cars)}</h1>
+                            <h1 className='workshop-card-title'>{index +1 + ' '+ normliseCarName(drive.cars)}</h1>
                             <p className='workshop-card-desc'>ON: {drive.date}</p>
                         </div>
                     )
