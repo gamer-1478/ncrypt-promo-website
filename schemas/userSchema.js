@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema({
     email: reqString,
     password: reqString,
     name: reqString,
+    drives: [{
+        cars: reqString,
+        date: reqString
+    }],
     date: {
         type: String,
         default: dateStringWithTime

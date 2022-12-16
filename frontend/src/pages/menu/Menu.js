@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Menu.css';
 import { useNavigate } from 'react-router-dom';
-import getUrl from '../../utitilies/Validation';
+import {getUrl} from '../../utitilies/Validation';
 
 function Menu() {
   const navigate = useNavigate();

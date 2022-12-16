@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Profile.css'
 import { useNavigate } from 'react-router-dom';
-import getUrl from '../../utitilies/Validation';
+import { getUrl, normliseCarName } from '../../utitilies/Validation';
 
 function Profile() {
     const navigate = useNavigate();
@@ -40,11 +40,15 @@ function Profile() {
             </div>
             <div className='profile-container'>
                 <h1 className='profile-container-title'>Your Upcoming Test Drives</h1>
-                <div className='workshop-card'>
-                    <h1 className='workshop-card-title'>1. ASCAR Evolution 2</h1>
-                    <p className='workshop-card-desc'>Pending on Dec 18th, 2022</p>
-                </div>
-
+                {user.hasOwnProperty('drives') && user.drives.length == 0 && <p className='profile-container-desc'>You have no upcoming test drives</p>}
+                {user.hasOwnProperty('drives') &&user.drives.length != 0 && user.drives.map((drive) => {
+                    return (
+                        <div className='workshop-card'>
+                            <h1 className='workshop-card-title'>{normliseCarName(drive.cars)}</h1>
+                            <p className='workshop-card-desc'>ON: {drive.date}</p>
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )

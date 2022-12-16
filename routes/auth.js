@@ -69,4 +69,16 @@ router.get('/logout', ensureAuthenticated, (req, res) => {
     res.redirect('/login')
 })
 
+
+router.post('/testd', async (req, res) => {
+    if (req.isAuthenticated()) {  
+        req.user.drives.push({cars: req.body.cars, date: req.body.date})
+        await req.user.save()
+        res.send({ success: true, msg: "Successfully scheduled test drive. Visit your nearest ASCAR center on the selected date."})
+    } else {
+        res.send({success: false, msg: "Not Authenticated"})
+    }
+})
+
+
 module.exports = router;
